@@ -1,11 +1,14 @@
 ## darkflare
 
 - #### Request
-  - [`key`]()
+  - [`parameters`]()
   - [`cookies`]()
   - [`body`]()
   - [`query`]()
 
 - #### Response
-  - [`replyWithJSON`]()
-  - [`replyWithText`]()
+  - [`json`]()
+  - [`text`]()
+  - [`cookie`]()
+  - [`code`]()
+  - [`header`]()
