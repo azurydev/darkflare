@@ -1,23 +1,5 @@
 ## darkflare
 
-### Features
-
-- [x] **cookies**
-- [x] **oauth2**
-- [x] **jwt**
-- [x] **routing**
-- [x] **nestable**
-
-## lol
-- #### Request
-  - [`parameters`]()
-  - [`cookies`]()
-  - [`body`]()
-  - [`query`]()
-
-- #### Response
-  - [`json`]()
-  - [`text`]()
-  - [`cookie`]()
-  - [`code`]()
-  - [`header`]()
+- #### Packages
+  - [`darkflare`](https://npm.im/darkflare) - **Node.js SDK for Cloudflare**
+  - [`@darkflare/router`](https://npm.im/@darkflare/router) - **Router for Workers**
