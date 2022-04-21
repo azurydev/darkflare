@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+      time: '14:00'
+      timezone: 'EST'
+    open-pull-requests-limit: 99
+    target-branch: 'canary'
+    versioning-strategy: 'increase'
