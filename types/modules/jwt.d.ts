@@ -9,7 +9,7 @@ declare const jwtVerify: (token: string, secret: string, config?: {
   algorithm?: Algorithm | undefined
 } | Algorithm | undefined) => Promise<boolean>
 
-declare const jwtDecode: (token: string) => object | null
+declare const jwtDecode: (token: string) => { [key: string]: any } | null
 
 export {
   jwtSign,
