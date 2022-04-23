@@ -35,6 +35,15 @@ import { build } from 'esbuild'
     minify: false,
     format: 'cjs',
     outfile: './dist/router.js'
+  }) 
+
+  // cors
+  await build({
+    entryPoints: ['./src/modules/cors.ts'],
+    bundle: true,
+    minify: true,
+    format: 'cjs',
+    outfile: './dist/cors.js'
   })
 
   // cli
