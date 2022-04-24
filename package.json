@@ -1,6 +1,6 @@
 {
   "name": "darkflare",
-  "version": "0.0.0-canary.3",
+  "version": "1.0.0",
   "description": "The Cloudflare Framework",
   "types": "./types/index.d.ts",
   "main": "./dist/index.js",
