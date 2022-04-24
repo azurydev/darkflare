@@ -27,11 +27,11 @@ export default async (directory: string, dev: boolean) => {
     if (!hookExists) return ''
 
     if (config.protect.strict) for (let i of config.protect.strict) {
-      if (endpoint.includes(i)) return ', preValidation'
+      if (endpoint.includes(i)) return ', preValidation.default'
     }
     
     if (config.protect.flexible) for (let i of config.protect.flexible) {
-      if (endpoint.includes(i)) return ', preValidation'
+      if (endpoint.includes(i)) return ', preValidation.default'
     }
 
     return ''
@@ -48,13 +48,13 @@ export default async (directory: string, dev: boolean) => {
         name: file.replace('\\', '').replaceAll('\\', '__').replaceAll('[', '_').replaceAll(']', '_').replace('.ts', '').replace(/[^a-zA-Z0-9_]/g, '$')
       }
     
-    imports += `var ${file.name} = require("${file.path}");\n`
+    imports += `var ${file.name} = require("${file.path}")\n`
     
     await build({
       entryPoints: [filePath],
       bundle: false,
       minify: false,
-      format: 'cjs',
+      format: 'esm',
       outfile: filePath.replace(sourceDirectory, join(outDirectory, './.darkflare/.cache')).replace('.ts', '.js')
     })
 
@@ -70,22 +70,40 @@ export default async (directory: string, dev: boolean) => {
     if (content.includes('head: async')) methods += 'HEAD, '
 
     methods = methods.substring(0, methods.length - 2)
+
+    const strictProtection = () => {
+      if (config.protect.strict) for (let i of config.protect.strict) {
+        if (file.endpoint.includes(i)) return true
+      }
+
+      return false
+    }
+
+    const flexibleProtection = () => {
+      if (config.protect.flexible) for (let i of config.protect.flexible) {
+        if (file.endpoint.includes(i)) return true
+      }
+
+      return false
+    }
+
+    const turnOnStrictProtection = !flexibleProtection() && strictProtection() === true
     
     routes += `
       .options('${file.endpoint}', cors('${methods}'))
-      ${content.includes('get: async') ? `.get('${file.endpoint}', async request => { return await handler(request, ${file.name}.get${addHookToRoute(file.endpoint)}) })` : ''}
-      ${content.includes('post: async') ? `.post('${file.endpoint}', async request => { return await handler(request, ${file.name}.post${addHookToRoute(file.endpoint)}) })` : ''}
-      ${content.includes('patch: async') ? `.patch('${file.endpoint}', async request => { return await handler(request, ${file.name}.patch${addHookToRoute(file.endpoint)}) })` : ''}
-      ${content.includes('put: async') ? `.put('${file.endpoint}', async request => { return await handler(request, ${file.name}.put${addHookToRoute(file.endpoint)}) })` : ''}
-      ${content.includes('delete: async') ? `.delete('${file.endpoint}', async request => { return await handler(request, ${file.name}.delete${addHookToRoute(file.endpoint)}) })` : ''}
-      ${content.includes('head: async') ? `.head('${file.endpoint}', async request => { return await handler(request, ${file.name}.head${addHookToRoute(file.endpoint)}) })` : ''}
+      ${content.includes('get: async') ? `.get('${file.endpoint}', async request => { return await handler(request, ${turnOnStrictProtection}, ${file.name}.default.get${addHookToRoute(file.endpoint)}) })` : ''}
+      ${content.includes('post: async') ? `.post('${file.endpoint}', async request => { return await handler(request, ${turnOnStrictProtection}, ${file.name}.default.post${addHookToRoute(file.endpoint)}) })` : ''}
+      ${content.includes('patch: async') ? `.patch('${file.endpoint}', async request => { return await handler(request, ${turnOnStrictProtection}, ${file.name}.default.patch${addHookToRoute(file.endpoint)}) })` : ''}
+      ${content.includes('put: async') ? `.put('${file.endpoint}', async request => { return await handler(request, ${turnOnStrictProtection}, ${file.name}.default.put${addHookToRoute(file.endpoint)}) })` : ''}
+      ${content.includes('delete: async') ? `.delete('${file.endpoint}', async request => { return await handler(request, ${turnOnStrictProtection}, ${file.name}.default.delete${addHookToRoute(file.endpoint)}) })` : ''}
+      ${content.includes('head: async') ? `.head('${file.endpoint}', async request => { return await handler(request, ${turnOnStrictProtection}, ${file.name}.default.head${addHookToRoute(file.endpoint)}) })` : ''}
     `
     } else if (!filePath.endsWith('.d.ts') && !filePath.endsWith('.test.ts') && filePath.endsWith('.ts')) {
       await build({
         entryPoints: [filePath],
         bundle: false,
         minify: false,
-        format: 'cjs',
+        format: 'esm',
         outfile: filePath.replace(sourceDirectory, join(outDirectory, './.darkflare/.cache')).replace('.ts', '.js')
       })
     } else if (filePath.endsWith('.json')) {
@@ -94,34 +112,21 @@ export default async (directory: string, dev: boolean) => {
   }
 
   finalRouter = finalRouter
-    .replace('"/* <- INSERT_IMPORTS_HERE -> */";', imports)
-    .replace('"/* <- INSERT_HANDLER_HERE -> */";', `var handler = require("./handler.js");${hookExists ? 'var preValidation = require("./.cache/hooks/preValidation.js");' : ''}`)
-    .replace('"/* <- INSERT_CORS_HANDLER_HERE -> */";', 'var cors = require("./cors.js");')
-    .replace(';\n"/* <- INSERT_ROUTES_HERE -> */";', routes.replace(/^ +/gm, ''))
-    .replace('"/* <- INSERT_BASE_HERE -> */"', `'${config.base ?? '/'}'`)
-    .replace('"/* <- INSERT_ORIGIN_HERE -> */"', `'${config.origin ?? '*'}'`)
-    .replace('"/* <- INSERT_DEV_HERE -> */"', `'${dev ?? false}'`)
+    .replace('/* <- INSERT_IMPORTS_HERE -> */', imports)
+    .replace('/* <- INSERT_PREVALIDATION_HOOK_HERE -> */', `${hookExists ? 'var preValidation = require("./.cache/hooks/preValidation.js")' : ''}`)
+    .replace('\n/* <- INSERT_ROUTES_HERE -> */', routes.replace(/^ +/gm, ''))
+    .replace('/* <- INSERT_BASE_HERE -> */', `'${config.base ?? '/'}'`)
+    .replaceAll('/* <- INSERT_ORIGIN_HERE -> */', `'${config.origin ?? '*'}'`)
+    .replace('/* <- INSERT_DEV_HERE -> */', `'${dev ?? false}'`)
 
   await writeFile(join(outDirectory, './.darkflare/router.js'), finalRouter, { encoding: 'utf-8' })
 
   await copyFile(join(__dirname, './ittyRouter.js'), join(outDirectory, './.darkflare/ittyRouter.js'))
-  await copyFile(join(__dirname, './cors.js'), join(outDirectory, './.darkflare/cors.js'))
-
-  let handler = await readFile(join(__dirname, './handler.js'), { encoding: 'utf-8' })
-  handler = handler.replace('"/* <- INSERT_ORIGIN_HERE -> */"', `'${config.origin ?? '*'}'`)
-
-  await writeFile(join(outDirectory, './.darkflare/handler.js'), handler)
-
-  let cors = await readFile(join(__dirname, './cors.js'), { encoding: 'utf-8' })
-  cors = cors.replace('"/* <- INSERT_ORIGIN_HERE -> */"', `'${config.origin ?? '*'}'`)
-
-  await writeFile(join(outDirectory, './.darkflare/cors.js'), cors)
 
   await build({
     entryPoints: [join(outDirectory, './.darkflare/router.js')],
     bundle: true,
     minify: true,
-    platform: 'browser',
     format: 'cjs',
     legalComments: 'none',
     outfile: join(outDirectory, './out/worker.js')
