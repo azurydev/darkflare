@@ -82,7 +82,7 @@ const handler = async (request, strictProtection, handle, validationHook) => {
 
 try {
   if (typeof validationHook === 'function') {
-    const preData = await validationHook(req, res)
+    const preData = (await validationHook(req, res)) ?? null
 
     if (strictProtection) {
       if (preData && typeof preData === 'object' && preData.code) {
@@ -99,7 +99,7 @@ try {
         })
       }
 
-      return new Response(typeof preData === 'string' ? preData : preData ? JSON.stringify(preData) : null, {
+      if (preData !== null) return new Response(typeof preData === 'string' ? preData : JSON.stringify(preData), {
         headers,
         status: responseCode
       })
