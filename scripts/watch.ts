@@ -11,16 +11,6 @@ import { build } from 'esbuild'
     outfile: './dist/index.js'
   })
 
-  // handler
-  await build({
-    entryPoints: ['./src/modules/handler.ts'],
-    bundle: true,
-    minify: true,
-    format: 'cjs',
-    watch: true,
-    outfile: './dist/handler.js'
-  })
-
   // ittyRouter
   await build({
     entryPoints: ['./src/modules/ittyRouter.ts'],
@@ -29,26 +19,6 @@ import { build } from 'esbuild'
     format: 'cjs',
     watch: true,
     outfile: './dist/ittyRouter.js'
-  })
-
-  // router
-  await build({
-    entryPoints: ['./src/modules/router.ts'],
-    bundle: false,
-    minify: false,
-    format: 'cjs',
-    watch: true,
-    outfile: './dist/router.js'
-  }) 
-
-  // cors
-  await build({
-    entryPoints: ['./src/modules/cors.ts'],
-    bundle: true,
-    minify: true,
-    format: 'cjs',
-    watch: true,
-    outfile: './dist/cors.js'
   })
 
   // cli
