@@ -15,8 +15,8 @@ export default async (directory: string, dev: boolean) => {
   let routes = ''
   let finalRouter = await readFile(join(__dirname, './router.js'), { encoding: 'utf-8' })
 
-  , sourceDirectory = directory.replaceAll('\\', '\\') + '\\src'
-  , outDirectory = sourceDirectory.replace('\\src', '')
+  , sourceDirectory = join(directory, './src')
+  , outDirectory = directory
 
   if (!existsSync(`${outDirectory}/.darkflare`)) await mkdir(`${outDirectory}/.darkflare`)
   if (!existsSync(`${outDirectory}/.darkflare/.cache`)) await mkdir(`${outDirectory}/.darkflare/.cache`)
@@ -26,11 +26,11 @@ export default async (directory: string, dev: boolean) => {
   const addHookToRoute = (endpoint: string) => {
     if (!hookExists) return ''
 
-    if (config.protect.strict) for (let i of config.protect.strict) {
+    for (let i of config.protect.strict) {
       if (endpoint.includes(i)) return ', preValidation.default'
     }
     
-    if (config.protect.flexible) for (let i of config.protect.flexible) {
+    for (let i of config.protect.flexible) {
       if (endpoint.includes(i)) return ', preValidation.default'
     }
 
@@ -72,7 +72,7 @@ export default async (directory: string, dev: boolean) => {
     methods = methods.substring(0, methods.length - 2)
 
     const strictProtection = () => {
-      if (config.protect.strict) for (let i of config.protect.strict) {
+      for (let i of config.protect.strict) {
         if (file.endpoint.includes(i)) return true
       }
 
@@ -80,7 +80,7 @@ export default async (directory: string, dev: boolean) => {
     }
 
     const flexibleProtection = () => {
-      if (config.protect.flexible) for (let i of config.protect.flexible) {
+      for (let i of config.protect.flexible) {
         if (file.endpoint.includes(i)) return true
       }
 
@@ -115,8 +115,8 @@ export default async (directory: string, dev: boolean) => {
     .replace('/* <- INSERT_IMPORTS_HERE -> */', imports)
     .replace('/* <- INSERT_PREVALIDATION_HOOK_HERE -> */', `${hookExists ? 'var preValidation = require("./.cache/hooks/preValidation.js")' : ''}`)
     .replace('\n/* <- INSERT_ROUTES_HERE -> */', routes.replace(/^ +/gm, ''))
-    .replace('/* <- INSERT_BASE_HERE -> */', `'${config.base ?? '/'}'`)
-    .replaceAll('/* <- INSERT_ORIGIN_HERE -> */', `'${config.origin ?? '*'}'`)
+    .replace('/* <- INSERT_BASE_HERE -> */', `'${config.base}'`)
+    .replaceAll('/* <- INSERT_ORIGIN_HERE -> */', `'${config.origin}'`)
     .replace('/* <- INSERT_DEV_HERE -> */', `'${dev ?? false}'`)
 
   await writeFile(join(outDirectory, './.darkflare/router.js'), finalRouter, { encoding: 'utf-8' })
@@ -129,10 +129,10 @@ export default async (directory: string, dev: boolean) => {
     minify: true,
     format: 'cjs',
     legalComments: 'none',
-    outfile: join(outDirectory, './out/worker.js')
+    outfile: join(outDirectory, './dist/worker.js')
   })
 
-  const { size } = statSync(join(outDirectory, './out/worker.js'))
+  const { size } = statSync(join(outDirectory, './dist/worker.js'))
 
   let readableTime = chalk.blackBright(`${Date.now() - time} ms`)
   let readableSize = chalk.blackBright(`${size / 1000} kB`)
