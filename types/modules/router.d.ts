@@ -23,18 +23,18 @@ type DarkflareResponse = {
   }) => Promise<void>
 }
 
-type Method = (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | void>
+type Method = (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | string | void>
 
 type Handler = {
-  get?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | void>,
-  post?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | void>,
-  patch?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | void>,
-  put?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | void>,
-  delete?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | void>,
-  head?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | void>
+  get?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | string | void>,
+  post?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | string | void>,
+  patch?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | string | void>,
+  put?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | string | void>,
+  delete?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | string | void>,
+  head?: (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | string | void>
 }
 
-type Hook = (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | void>
+type Hook = (req: DarkflareRequest, res: DarkflareResponse) => Promise<{ code?: number, [key: string]: any } | string | void>
 
 export {
   DarkflareRequest,
