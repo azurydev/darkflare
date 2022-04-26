@@ -4,8 +4,8 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
-      time: '14:00'
-      timezone: 'EST'
+      time: '18:00'
+      timezone: 'Europe/Berlin'
     open-pull-requests-limit: 99
     target-branch: 'canary'
     versioning-strategy: 'increase'
