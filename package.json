@@ -43,7 +43,7 @@
     "@tsndr/cloudflare-worker-jwt": "^1.1.7",
     "@types/jest": "^27.4.1",
     "@types/yargs": "^17.0.10",
-    "chalk": "^4.1.2",
+    "chalk": "^5.0.1",
     "itty-router": "^2.6.1",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
