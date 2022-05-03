@@ -1,8 +1,8 @@
-/src
-/test
-/scripts
-/.github
+test
+packages
+scripts
+.github
 .gitignore
 changelog.md
 tsconfig.json
-jest.config.js
+jest.config.json
