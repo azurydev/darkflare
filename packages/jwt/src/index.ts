@@ -1,11 +1,11 @@
 import jwt from '@tsndr/cloudflare-worker-jwt'
 
-const sign = jwt.sign
-, verify = jwt.verify
-, decode = jwt.decode
+const jwtSign = jwt.sign
+, jwtVerify = jwt.verify
+, jwtDecode = jwt.decode
 
 export {
-  sign,
-  verify,
-  decode
+  jwtSign,
+  jwtVerify,
+  jwtDecode
 }
