@@ -39,7 +39,7 @@
     "esbuild": "^0.14.38"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.7.1",
+    "@cloudflare/workers-types": "^3.8.0",
     "@tsndr/cloudflare-worker-jwt": "^1.1.7",
     "@types/jest": "^27.4.1",
     "@types/yargs": "^17.0.10",
