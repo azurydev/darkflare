@@ -1,0 +1,12 @@
+{
+  "name": "darkflare",
+  "version": "2.0.0-canary.0",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": "./index.js"
+  },
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --minify --format=esm --legal-comments=none --outfile=../../dist/jwt/index.js"
+  },
+  "type": "module"
+}
