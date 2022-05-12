@@ -1,19 +1,32 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
+    "module": "es2020",
     "moduleResolution": "node",
-    "rootDir": "src",
+    "rootDir": "packages",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "alwaysStrict": true,
     "strict": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "removeComments": true,
+    "noEmit": true,
     "skipLibCheck": true,
+    "newLine": "crlf",
     "types": [
-      "@cloudflare/workers-types",
-      "@types/jest",
-      "node"
+      "node",
+      "jest",
+      "fs-extra"
     ]
   },
-  "include": ["src"],
-  "exclude": ["test"]
+  "include": [
+    "packages"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test"
+  ]
 }
