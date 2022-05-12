@@ -1,6 +1,6 @@
 {
   "name": "darkflare",
-  "version": "2.0.0-canary.0",
+  "version": "",
   "types": "./types/index.d.ts",
   "exports": {
     ".": "./index.js"
