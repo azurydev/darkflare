@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
-  "$id": "https://cdn.jsdelivr.net/gh/azurydev/darkflare@latest/schema.json",
+  "$id": "https://cdn.jsdelivr.net/gh/azurydev/darkflare@canary/schema.json",
   "title": "Darkflare",
   "description": "A JSON schema for Darkflare",
   "type": "object",
