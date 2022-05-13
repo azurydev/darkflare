@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://cdn.jsdelivr.net/gh/azurydev/darkflare@latest/schema.json",
+  "title": "Darkflare",
+  "description": "A JSON schema for Darkflare",
+  "type": "object",
+  "properties": {
+    "base": {
+      "description": "The base for your API, e.g. /api",
+      "type": "string",
+      "default": "/"
+    },
+    "origin": {
+      "description": "The allowed request origin for CORS.",
+      "type": "string",
+      "default": "*"
+    },
+    "handlePreflightRequests": {
+      "description": "Automatically handle preflight requests sent by browsers.",
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
