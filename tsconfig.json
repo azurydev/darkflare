@@ -3,7 +3,7 @@
     "target": "esnext",
     "module": "es2020",
     "moduleResolution": "node",
-    "rootDir": "packages",
+    "rootDir": "src",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
@@ -22,7 +22,7 @@
     ]
   },
   "include": [
-    "packages"
+    "src"  
   ],
   "exclude": [
     "node_modules",
