@@ -6,12 +6,12 @@
   "type": "object",
   "properties": {
     "base": {
-      "description": "The base for your API, e.g. `/api`",
+      "description": "The base for your API, e.g. /api",
       "type": "string",
       "default": "/"
     },
     "origin": {
-      "description": "The allowed **request origin** for CORS.",
+      "description": "The allowed request origin for CORS.",
       "type": "string",
       "default": "*"
     },
