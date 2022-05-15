@@ -2,7 +2,7 @@
   "name": "darkflare",
   "version": "2.0.0-canary.0",
   "description": "The Cloudflare Framework",
-  "types": "./types/index.d.ts",
+  "types": "./dist/darkflare/types/index.d.ts",
   "exports": {
     "./jwt": "./dist/jwt/index.js"
   },
@@ -37,18 +37,19 @@
   },
   "homepage": "https://github.com/azurydev/darkflare#readme",
   "dependencies": {
+    "boxen": "^6.2.1",
     "chokidar": "^3.5.3",
-    "esbuild": "^0.14.39"
+    "esbuild": "^0.14.39",
+    "fs-extra": "^10.1.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.10.0",
+    "@goodies/get-files": "^1.0.0",
     "@tsndr/cloudflare-worker-jwt": "^1.1.7",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^27.5.1",
     "@types/yargs": "^17.0.10",
-    "boxen": "^6.2.1",
     "chalk": "^5.0.1",
-    "fs-extra": "^10.1.0",
     "itty-router": "^2.6.1",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.7.0",
