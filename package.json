@@ -3,6 +3,7 @@
   "version": "2.0.0-canary.0",
   "description": "The Cloudflare Framework",
   "types": "./dist/darkflare/types/index.d.ts",
+  "main": "./dist/api.js",
   "exports": {
     "./jwt": "./dist/jwt/index.js"
   },
@@ -10,7 +11,11 @@
     "darkflare": "./dist/index.js"
   },
   "scripts": {
-    "build": "node scripts/build.js",
+    "build:cli": "esbuild src/cli/index.ts --external:chokidar --external:esbuild --bundle --minify --format=cjs --platform=node --outfile=dist/index.js",
+    "build:api": "esbuild src/api/index.ts --bundle --minify --format=cjs --outfile=dist/api.js",
+    "build:router": "esbuild src/code/router.ts --bundle --minify --legal-comments=none --format=cjs --outfile=dist/code/router.js",
+    "watch": "esbuild src/cli/index.ts --watch --external:chokidar --external:esbuild --bundle --minify --format=cjs --platform=node --outfile=dist/index.js",
+    "build": "npm run build:cli && npm run build:api && npm run build:router",
     "publish:canary": "npm run build && npm publish --tag canary",
     "publish:patch": "npm version patch && npm run build && npm publish",
     "publish:minor": "npm version minor && npm run build && npm publish",
@@ -60,6 +65,5 @@
   "engines": {
     "node": ">=16",
     "npm": ">=8"
-  },
-  "type": "module"
+  }
 }
