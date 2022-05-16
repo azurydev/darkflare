@@ -1,10 +1,26 @@
 {
-	"$schema": "https://turborepo.org/schema.json",
-	"baseBranch": "origin/main",
-	"pipeline": {
-		"build": {
-			"dependsOn": ["^build"],
-			"outputs": ["dist/**"]
-		}
-	}
+  "$schema": "https://turborepo.org/schema.json",
+  "baseBranch": "origin/main",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "publish:canary": {
+      "dependsOn": ["build"],
+      "outputs": []
+    },
+    "publish:patch": {
+      "dependsOn": ["build"],
+      "outputs": []
+    },
+    "publish:minor": {
+      "dependsOn": ["build"],
+      "outputs": []
+    },
+    "publish:major": {
+      "dependsOn": ["build"],
+      "outputs": []
+    }
+  }
 }
