@@ -7,10 +7,10 @@
   "exports": "./dist/index.js",
   "scripts": {
     "build": "esbuild src/index.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
-    "publish:canary": "npm run build && npm publish --tag canary",
-    "publish:patch": "npm version patch && npm run build && npm publish",
-    "publish:minor": "npm version minor && npm run build && npm publish",
-    "publish:major": "npm version major && npm run build && npm publish"
+    "publish:canary": "npm version prerelease --preid=canary && npm publish --tag canary",
+    "publish:patch": "npm version patch && npm publish",
+    "publish:minor": "npm version minor && npm publish",
+    "publish:major": "npm version major && npm publish"
   },
   "funding": {
     "type": "individual",
