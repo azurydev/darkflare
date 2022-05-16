@@ -1,66 +1,18 @@
 {
-  "name": "darkflare",
-  "version": "2.0.0-canary.0",
-  "description": "The Cloudflare Framework",
-  "types": "./dist/darkflare/types/index.d.ts",
-  "main": "./dist/api.js",
-  "exports": {
-    "./jwt": "./dist/jwt/index.js"
-  },
-  "bin": {
-    "darkflare": "./dist/index.js"
-  },
+  "name": "@darkflare/wrapper",
+  "private": true,
   "scripts": {
-    "build:cli": "esbuild src/cli/index.ts --external:chokidar --external:esbuild --bundle --minify --format=cjs --platform=node --outfile=dist/index.js",
-    "build:api": "esbuild src/api/index.ts --bundle --minify --format=cjs --outfile=dist/api.js",
-    "build:router": "esbuild src/code/router.ts --bundle --minify --legal-comments=none --format=cjs --outfile=dist/code/router.js",
-    "watch": "esbuild src/cli/index.ts --watch --external:chokidar --external:esbuild --bundle --minify --format=cjs --platform=node --outfile=dist/index.js",
-    "build": "npm run build:cli && npm run build:api && npm run build:router",
-    "publish:canary": "npm run build && npm publish --tag canary",
-    "publish:patch": "npm version patch && npm run build && npm publish",
-    "publish:minor": "npm version minor && npm run build && npm publish",
-    "publish:major": "npm version major && npm run build && npm publish"
+    "build": "turbo run build",
+    "publish:canary": "turbo run publish:canary",
+    "publish:patch": "turbo run publish:patch",
+    "publish:minor": "turbo run publish:minor",
+    "publish:major": "turbo run publish:major"
   },
-  "funding": {
-    "type": "individual",
-    "url": "https://ko-fi.com/azury"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/azurydev/darkflare.git"
-  },
-  "keywords": [
-    "api",
-    "workers",
-    "cloudflare",
-    "framework"
+  "workspaces": [
+    "packages/*"
   ],
-  "author": "Azury <hello@azury.dev> (https://azury.dev)",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/azurydev/darkflare/issues"
-  },
-  "homepage": "https://github.com/azurydev/darkflare#readme",
-  "dependencies": {
-    "chokidar": "^3.5.3",
-    "esbuild": "^0.14.39"
-  },
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.10.0",
-    "@goodies/get-files": "^1.0.1",
-    "@tsndr/cloudflare-worker-jwt": "^1.1.7",
-    "@types/fs-extra": "^9.0.13",
-    "@types/jest": "^27.5.1",
-    "@types/yargs": "^17.0.10",
-    "boxen": "^5.1.2",
-    "chalk": "^5.0.1",
-    "fs-extra": "^10.1.0",
-    "itty-router": "^2.6.1",
-    "ts-jest": "^28.0.2",
-    "ts-node": "^10.7.0",
-    "tslib": "^2.4.0",
-    "typescript": "^4.6.4",
-    "yargs": "^17.5.0"
+    "turbo": "^1.2.9"
   },
   "engines": {
     "node": ">=16",
