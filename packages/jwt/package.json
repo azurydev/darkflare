@@ -1,0 +1,47 @@
+{
+  "name": "@darkflare/jwt",
+  "version": "1.0.0",
+  "description": "The Cloudflare Framework",
+  "types": "./types/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": "./dist/index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
+    "publish:canary": "npm run build && npm publish --tag canary",
+    "publish:patch": "npm version patch && npm run build && npm publish",
+    "publish:minor": "npm version minor && npm run build && npm publish",
+    "publish:major": "npm version major && npm run build && npm publish"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://ko-fi.com/azury"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azurydev/darkflare.git"
+  },
+  "keywords": [
+    "api",
+    "workers",
+    "cloudflare",
+    "framework",
+    "darkflare"
+  ],
+  "author": "Azury <hello@azury.dev> (https://azury.dev)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/azurydev/darkflare/issues"
+  },
+  "homepage": "https://github.com/azurydev/darkflare#readme",
+  "devDependencies": {
+    "@tsndr/cloudflare-worker-jwt": "^1.1.7",
+    "@types/jest": "^27.5.1",
+    "esbuild": "^0.14.39",
+    "typescript": "^4.6.4"
+  },
+  "engines": {
+    "node": ">=16",
+    "npm": ">=8"
+  },
+  "type": "module"
+}
