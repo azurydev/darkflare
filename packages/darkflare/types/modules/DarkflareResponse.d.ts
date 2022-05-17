@@ -10,5 +10,7 @@ export type DarkflareResponse = {
     secure?: boolean,
     httpOnly?: boolean,
     sameSite?: 'Strict' | 'Lax' | 'None'
-  }) => Promise<void>
+  }) => Promise<void>,
+  json: (data: object) => Promise<void>,
+  text: (data: string) => Promise<void>
 }

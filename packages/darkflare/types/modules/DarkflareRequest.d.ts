@@ -80,12 +80,17 @@ interface IncomingRequestCfPropertiesTLSClientAuth {
   certVerified: string
 }
 
-export interface DarkflareRequest extends IncomingRequestCfProperties {
+export interface DarkflareRequest<Environment = { [key: string]: any }, > extends IncomingRequestCfProperties {
   query: { [key: string]: any },
   params: { [key: string]: any },
   headers: { [key: string]: any },
   cookies: { [key: string]: any },
   body?: { [key: string]: any },
+  env?: Environment,
+  context?: {
+    waitUntil(promise: Promise<any>): void,
+    passThroughOnException(): void
+  },
   raw: Request,
   [key: string]: any
 }
