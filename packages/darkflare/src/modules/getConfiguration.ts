@@ -5,7 +5,7 @@ const getConfiguration = async (directory: string) => {
     const config = await fse.readJson(`${directory}/darkflare.json`)
   
     return {
-      ...(config.base && { base: config.base }),
+      ...(config.base && config.base !== '/' && { base: config.base }),
       origin: config.origin || '*',
       handlePreflightRequests: config.handlePreflightRequests || true,
       modules: config.modules || true,
