@@ -48,7 +48,7 @@ const handler = async (request: IttyRequest, handle: Function, env: any, context
       body,
       raw: request,
       env,
-      context,
+      ctx: context,
       ...request.cf
     }
   
