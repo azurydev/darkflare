@@ -39,12 +39,11 @@
   },
   "homepage": "https://github.com/azurydev/darkflare#readme",
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.8.0",
+    "@cloudflare/workers-types": "^3.10.0",
     "@types/fs-extra": "^9.0.13",
-    "@types/node": "^17.0.31",
+    "@types/node": "^17.0.34",
     "chalk": "^5.0.1",
-    "darkflare": "^1.1.0",
-    "esbuild": "^0.14.38",
+    "esbuild": "^0.14.39",
     "fs-extra": "^10.1.0",
     "typescript": "^4.6.4",
     "yargs": "^17.5.1"
