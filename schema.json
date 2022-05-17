@@ -19,6 +19,16 @@
       "description": "Automatically handle preflight requests sent by browsers.",
       "type": "boolean",
       "default": true
+    },
+    "modules": {
+      "description": "Build your app for a module worker.",
+      "type": "boolean",
+      "default": true
+    },
+    "minify": {
+      "description": "Minify your app. (automatically disabled when running the build command under dev flag)",
+      "type": "boolean",
+      "default": true
     }
   }
 }
