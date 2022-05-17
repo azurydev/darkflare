@@ -6,20 +6,23 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "test": {
+      "outputs": []
+    },
     "publish:canary": {
-      "dependsOn": ["build"],
+      "dependsOn": ["build", "test"],
       "outputs": []
     },
     "publish:patch": {
-      "dependsOn": ["build"],
+      "dependsOn": ["build", "test"],
       "outputs": []
     },
     "publish:minor": {
-      "dependsOn": ["build"],
+      "dependsOn": ["build", "test"],
       "outputs": []
     },
     "publish:major": {
-      "dependsOn": ["build"],
+      "dependsOn": ["build", "test"],
       "outputs": []
     }
   }
