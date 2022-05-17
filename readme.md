@@ -13,6 +13,7 @@ npx @darkflare/new --modules
 ### Guide
 
 - #### Core
+  - [`Configuration`](https://github.com/azurydev/darkflare/blob/canary/guide/configuration.md)
   - [`Routes`](https://github.com/azurydev/darkflare/blob/canary/guide/routes.md)
   - [`Middlewares`](https://github.com/azurydev/darkflare/blob/canary/guide/middlewares.md)
   - [`Request`](https://github.com/azurydev/darkflare/blob/canary/guide/request.md)
