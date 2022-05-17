@@ -94,9 +94,11 @@ test('response methods', async () => {
 
   const response2 = await mf.dispatchFetch('http://localhost:8787/testJsonMethod')
   expect(await response2.json()).toStrictEqual({ message: 'Hello World' })
-  
+  expect(response2.headers.get('content-type')).toBe('application/json; charset=utf-8')
+
   const response3 = await mf.dispatchFetch('http://localhost:8787/testTextMethod')
   expect(await response3.text()).toBe('Hello World')
+  expect(response3.headers.get('content-type')).toBe('text/plain; charset=utf-8')
 })
 
 test('not found handling', async () => {

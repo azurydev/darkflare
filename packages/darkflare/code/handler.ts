@@ -87,8 +87,8 @@ const handler = async (request: IttyRequest, handle: Function, env: any, context
       if (typeof middleware === 'function') {
         const preData = await middleware(req, res) || null
   
-        if (preData && typeof preData === 'object' && preData.code) {
-          responseCode = preData.code
+        if (preData && typeof preData === 'object') {
+          if (preData.code) responseCode = preData.code
           responseHeaders['content-type'] = 'application/json; charset=utf-8'
         } else if (preData && typeof preData === 'string') {
           responseHeaders['content-type'] = 'text/plain; charset=utf-8'
@@ -111,8 +111,8 @@ const handler = async (request: IttyRequest, handle: Function, env: any, context
     const d = await handle(req, res)
     if (!data) data = d
   
-    if (data && typeof data === 'object' && data.code) {
-      responseCode = data.code
+    if (data && typeof data === 'object') {
+      if (data.code) responseCode = data.code
       responseHeaders['content-type'] = 'application/json; charset=utf-8'
     } else if (data && typeof data === 'string') {
       responseHeaders['content-type'] = 'text/plain; charset=utf-8'
