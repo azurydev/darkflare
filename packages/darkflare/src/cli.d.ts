@@ -6,14 +6,14 @@ type Configuration = {
   minify: boolean
 }
 
-type Route = {
+type RouteObject = {
   endpoint: string,
   name: string,
   importPath: string,
   absolutePath: string
 }
 
-type Middleware = {
+type MiddlewareObject = {
   name: string,
   importPath: string,
   absolutePath: string
