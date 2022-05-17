@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "test": "turbo run test",
     "publish:canary": "turbo run publish:canary",
     "publish:patch": "turbo run publish:patch",
     "publish:minor": "turbo run publish:minor",
