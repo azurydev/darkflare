@@ -1,0 +1,36 @@
+name = ""
+type = "javascript"
+account_id = ""
+zone_id = ""
+compatibility_date = "2022-05-16"
+workers_dev = true
+
+kv_namespaces = [
+  { binding = "", id = "", preview_id = "" }
+]
+
+[vars]
+dev = true
+
+[env.production]
+name = ""
+route = ""
+type = "javascript"
+
+kv_namespaces = [
+  { binding = "", id = "", preview_id = "" }
+]
+
+[env.production.vars]
+dev = false
+
+[build]
+command = "npm install && npm run build"
+
+[build.upload]
+format = "modules"
+dir = "./dist"
+main = "./worker.js"
+
+[[build.upload.rules]]
+type = "ESModule"
