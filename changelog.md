@@ -16,6 +16,8 @@
 - added option to **disable handling preflight requests** by browsers
 - added option to **opt-out of new module workers syntax**
 - added option to **disable minification**
+- added `json()` method to `res` object for alternative usage
+- added `text()` method to `res` object for alternative usage
 
 #### Bug Fixes:
 
@@ -25,6 +27,7 @@
 - fixed an issue regarding the build process which led darkflare to think comments are actual route handlers
 - fixed type declaration for `.redirect()` method
 - added a fallback for `IncomingRequestCfProperties` type in case `@cloudflare/workers-types` is not installed
+- fixed an issue that led to an invalid `content-type` header
 
 ## v1
 
