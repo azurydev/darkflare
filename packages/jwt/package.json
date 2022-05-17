@@ -1,6 +1,6 @@
 {
   "name": "@darkflare/jwt",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A simple JWT library for Cloudflare Workers.",
   "types": "./types/index.d.ts",
   "main": "./dist/index.js",
@@ -8,10 +8,10 @@
   "scripts": {
     "build": "esbuild src/index.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
     "test": "",
-    "publish:canary": "npm version prerelease --preid=canary && npm publish --tag canary",
-    "publish:patch": "npm version patch && npm publish",
-    "publish:minor": "npm version minor && npm publish",
-    "publish:major": "npm version major && npm publish"
+    "publish:canary": "npm version prerelease --preid=canary && npm publish --tag canary --access public",
+    "publish:patch": "npm version patch && npm publish --access public",
+    "publish:minor": "npm version minor && npm publish --access public",
+    "publish:major": "npm version major && npm publish --access public"
   },
   "funding": {
     "type": "individual",
