@@ -1,28 +1,30 @@
 # changelog
 
-### v2.0.0 (upcoming)
+### v2.0.0
 
 #### Breaking Changes:
 
-- [x] package is now **esm-only**
-- [x] split packages into separate directories
-- [x] renamed build command to `darkflare build`
-- [x] removed `preValidation` hook
+- darkflare now uses the [module workers](https://developers.cloudflare.com/workers/learning/migrating-to-module-workers/) syntax by default
+- split packages into separate directories
+- renamed build command to `darkflare build`
+- removed `preValidation` hook
 
 #### New Features:
 
-- [ ] drastically decreased build output for large projects by adding a custom router
-- [x] added unit tests to avoid such bugs in future
-- [x] added **middlewares**, a enhanced version of hooks
-- [x] added **route settings** to modify specific routes only or give them an alias
-- [x] global type declarations
+- added **unit tests** to be safer in future
+- added **middlewares**, an enhanced version of hooks
+- added option to **disable handling preflight requests** by browsers
+- added option to **opt-out of new module workers syntax**
+- added option to **disable minification**
 
 #### Bug Fixes:
 
-- [x] fixed default route `/` to respond properly to requests
-- [x] fixed `.redirect()` method which didn't actually redirect
-- [x] fixed a issue regarding the build process which led darkflare to think comments are actual route handlers
-- [x] fixed type declaration for `.redirect()` method
+- fixed default route `/` to respond properly to requests
+- fixed `.redirect()` method which didn't actually redirect
+- fixed the setting of custom headers
+- fixed an issue regarding the build process which led darkflare to think comments are actual route handlers
+- fixed type declaration for `.redirect()` method
+- added a fallback for `IncomingRequestCfProperties` type in case `@cloudflare/workers-types` is not installed
 
 ## v1
 
