@@ -1,3 +1,5 @@
+### Introduction
+
 > Middlewares allow you to run a function before passing the request to the respective route. This way you can add additional data to the `req` object, validate the incoming request, and much more.
 
 ### Usage
