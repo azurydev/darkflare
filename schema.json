@@ -6,7 +6,7 @@
   "type": "object",
   "properties": {
     "base": {
-      "description": "The base for your API, e.g. /api",
+      "description": "The base for your API, e.g. /api.",
       "type": "string",
       "default": "/"
     },
