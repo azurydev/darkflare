@@ -1,7 +1,7 @@
 {
   "name": "@darkflare/jwt",
   "version": "1.0.0",
-  "description": "The Cloudflare Framework",
+  "description": "A simple JWT library for Cloudflare Workers.",
   "types": "./types/index.d.ts",
   "main": "./dist/index.js",
   "exports": "./dist/index.js",
@@ -26,7 +26,8 @@
     "workers",
     "cloudflare",
     "framework",
-    "darkflare"
+    "darkflare",
+    "jwt"
   ],
   "author": "Azury <hello@azury.dev> (https://azury.dev)",
   "license": "Apache-2.0",
