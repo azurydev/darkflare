@@ -85,9 +85,9 @@ export interface DarkflareRequest<Environment = { [key: string]: any }, > extend
   params: { [key: string]: any },
   headers: { [key: string]: any },
   cookies: { [key: string]: any },
-  body?: { [key: string]: any },
+  body: { [key: string]: any },
   env?: Environment,
-  context?: {
+  ctx?: {
     waitUntil(promise: Promise<any>): void,
     passThroughOnException(): void
   },
