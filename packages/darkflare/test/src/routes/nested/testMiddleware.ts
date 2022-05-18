@@ -1,7 +1,5 @@
 import { Handler } from '../../../../types'
 
-export default {
-  get: async req => {
-    return req.custom
-  }
-} as Handler
+export const Get: Handler = async req => {
+  return req.custom
+}

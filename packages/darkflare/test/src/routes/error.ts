@@ -1,7 +1,5 @@
 import { Handler } from '../../../types'
 
-export default {
-  get: async () => {
-    throw Error('what the fuck')
-  }
-} as Handler
+export const Get: Handler = async () => {
+  throw Error('what the fuck')
+}
