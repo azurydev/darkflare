@@ -1,5 +1,11 @@
 ## darkflare
 
+### Introduction
+
+> darkflare is a TypeScript framework for Cloudflare workers. The framework is the **foundation** for your project and serves as the **compiler** for your file-based routing app. darkflare generates a lightweight, bundled and minified worker script that leverages `itty-router` under the hood for the routing part. **Our main goal is to provide developers with a straightforward way to create scalable and maintainable production-ready APIs.**
+
+#
+
 ### Setup
 
 > Creates a new project with **darkflare** and **Module Workers** syntax.
