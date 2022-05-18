@@ -35,6 +35,8 @@ npx @darkflare/new --modules
 
 > To make sure you're not left in the dark, we've created a sample app using [`npx @darkflare/new --modules`](sample-modules-app) and [`npx @darkflare/new`](sample-app).
 
+#
+
 ### Contributing
 
 > We'd love to hear all your amazing ideas, feel free to post them [here](https://github.com/azurydev/darkflare/issues/new/choose).
