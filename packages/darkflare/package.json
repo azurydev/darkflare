@@ -44,6 +44,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^3.10.0",
     "@goodies/get-files": "^1.0.4",
+    "@goodies/get-readable-size": "^1.0.3",
     "@tsndr/cloudflare-worker-jwt": "^1.1.7",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^27.5.1",
