@@ -76,6 +76,7 @@ export default async (modules: boolean) => {
       esModuleInterop: true,
       forceConsistentCasingInFileNames: true,
       resolveJsonModule: true,
+      isolatedModules: true,
       alwaysStrict: true,
       strict: true,
       noImplicitReturns: true,
@@ -102,10 +103,12 @@ export default async (modules: boolean) => {
   console.clear()
 
   // copy routes
-  if (!copyRoutes || copyRoutes !== 'n') await copy(join(__dirname, '../code/routes'), join(directory, './src/routes'))
-  else await ensureDir(join(directory, './src/routes'))
-
-  await writeFile(join(directory, './src/routes/your_routes_here'), 'you can delete this file')
+  if (!copyRoutes || copyRoutes !== 'n') {
+    await copy(join(__dirname, '../code/routes'), join(directory, './src/routes'))
+  } else {
+    await ensureDir(join(directory, './src/routes'))
+    await writeFile(join(directory, './src/routes/your_routes_here'), 'you can delete this file')
+  }
 
   // copy wrangler config
   if (modules) await copyFile(join(__dirname, '../code/moduleWorker.toml'), join(directory, './wrangler.toml'))
