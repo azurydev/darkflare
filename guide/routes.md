@@ -9,21 +9,19 @@
 ```typescript
 import type { Handler } from 'darkflare'
 
-export default {
-  get: async (req, res) => {
-    return 'Hello World'
-  }
-} as Handler
+export const Get: Handler = async (req, res) => {
+  return 'Hello World'
+}
 ```
 
 #### Supported Methods:
 
-- `get`
-- `put`
-- `patch`
-- `post`
-- `delete`
-- `head`
+- `Get`
+- `Put`
+- `Patch`
+- `Post`
+- `Delete`
+- `Head`
 
 ### Special Types
 

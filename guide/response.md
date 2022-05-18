@@ -16,12 +16,10 @@
 ```typescript
 import type { Handler } from 'darkflare'
 
-export default {
-  get: async () => {
-    return {
-      code: 500, // this will set the status code (and will also be included in the response body)
-      message: 'Something Went Wrong'
-    }
+export const Get: Handler = async () => {
+  return {
+    code: 500, // this will set the status code (and will also be included in the response body)
+    message: 'Something Went Wrong'
   }
-} as Handler
+}
 ```
