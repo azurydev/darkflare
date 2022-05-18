@@ -31,7 +31,7 @@ npx @darkflare/new --modules
 
 #
 
-### Example
+### Examples
 
 > To make sure you're not left in the dark, we've created a sample app using [`npx @darkflare/new --modules`](sample-modules-app) and [`npx @darkflare/new`](sample-app).
 
