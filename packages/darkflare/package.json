@@ -1,6 +1,6 @@
 {
   "name": "darkflare",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "The Cloudflare Framework",
   "types": "./types/index.d.ts",
   "bin": {
