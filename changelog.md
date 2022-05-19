@@ -5,6 +5,14 @@
 - [**v2**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v2.md)
 - [**v1**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v1.md)
 
+## v3.0.3
+
+### Bug Fixes:
+
+- **Fixed the generation of a new darkflare project in Modules Worker format.**
+
+  Added missing `globs` option to build upload rules.
+
 ## v3.0.2
 
 ### Bug Fixes:
