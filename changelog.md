@@ -1,47 +1,48 @@
 # changelog
 
-### v2.0.0
+#### Archived Releases:
 
-#### Breaking Changes:
+- [**v2**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v2.md)
+- [**v1**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v1.md)
 
-- darkflare now uses the [module workers](https://developers.cloudflare.com/workers/learning/migrating-to-module-workers/) syntax by default
-- split packages into separate directories
-- renamed build command to `darkflare build`
-- removed `preValidation` hook
+## v3.0.0 & v3.0.1
 
-#### New Features:
+### Breaking Changes:
 
-- added **unit tests** to be safer in future
-- added **middlewares**, an enhanced version of hooks
-- added option to **disable handling preflight requests** by browsers
-- added option to **opt-out of new module workers syntax**
-- added option to **disable minification**
-- added `json()` method to `res` object for alternative usage
-- added `text()` method to `res` object for alternative usage
+- **Changed the form of routes to a more stable variant.**
+  
+  A old route:
 
-#### Bug Fixes:
+  ```typescript
+  import type { Handler } from 'darkflare'
 
-- fixed default route `/` to respond properly to requests
-- fixed `.redirect()` method which didn't actually redirect
-- fixed the setting of custom headers
-- fixed an issue regarding the build process which led darkflare to think comments are actual route handlers
-- fixed type declaration for `.redirect()` method
-- added a fallback for `IncomingRequestCfProperties` type in case `@cloudflare/workers-types` is not installed
-- fixed an issue that led to an invalid `content-type` header
+  export default {
+    get: async () => {
+      return 'Hello World'
+    }
+  }
+  ```
 
-## v1
+  The new version of it:
 
-### v1.1.0
+  ```typescript
+  import type { Handler } from 'darkflare'
 
-#### New Features:
+  export const Get: Handler = async () => {
+    return 'Hello World'
+  }
+  ```
 
-- allow strings as return type in routes
+### Bug Fixes:
 
-#### Changes:
+- **Fixed an issue that led the building process to fail because it couldn't understand web APIs.**
+  
+  The Web Crypto API *should* work in Cloudflare Workers. Now, the below code snippet should also work with darkflare:
 
-- fixed Darkflare for Linux
-- added fallback config
+  ```typescript
+  import type { Handler } from 'darkflare'
 
-### v1.0.0
-
-Released `@darkflare/new`.
+  export const Get: Handler = async () => {
+    return crypto.randomUUID()
+  }
+  ```
