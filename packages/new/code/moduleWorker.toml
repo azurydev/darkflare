@@ -34,3 +34,4 @@ main = "./worker.js"
 
 [[build.upload.rules]]
 type = "ESModule"
+globs = ["dist/*.js"]
