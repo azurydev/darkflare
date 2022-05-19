@@ -1,6 +1,6 @@
 {
   "name": "@darkflare/new",
-  "version": "2.0.0",
+  "version": "3.0.1",
   "description": "A simple way to setup a darkflare app.",
   "bin": {
     "@darkflare/new": "./dist/index.js",
