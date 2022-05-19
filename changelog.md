@@ -5,6 +5,14 @@
 - [**v2**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v2.md)
 - [**v1**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v1.md)
 
+## v3.0.2
+
+### Bug Fixes:
+
+- **Fixed the generation of a non-modules worker script.**
+
+  An issue in the fallback configuration made it impossible to generate a non-modules worker script or set any options in the configuration to `false`.
+
 ## v3.0.0 & v3.0.1
 
 ### Breaking Changes:

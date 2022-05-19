@@ -6,10 +6,10 @@ const getConfiguration = async (directory: string) => {
   
     return {
       ...(config.base && config.base !== '/' && { base: config.base }),
-      origin: config.origin || '*',
-      handlePreflightRequests: config.handlePreflightRequests || true,
-      modules: config.modules || true,
-      minify: config.minify || true
+      origin: config.origin ?? '*',
+      handlePreflightRequests: config.handlePreflightRequests ?? true,
+      modules: config.modules ?? true,
+      minify: config.minify ?? true
     } as Configuration
   } catch (err) {
     return {
