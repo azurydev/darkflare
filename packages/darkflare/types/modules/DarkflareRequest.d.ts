@@ -1,96 +1,135 @@
-interface IncomingRequestCfProperties {
+export type DarkflareRequest<RequestParams = { [key: string]: any }, RequestEnv = undefined> = {
   /**
-   * (e.g. 395747)
+   * Parsed object of the query parameters of the incoming request.
    */
-  asn: number,
+  query: { [key: string]: any }
   /**
-   * The organisation which owns the ASN of the incoming request.
-   * (e.g. Google Cloud)
+   * Parsed object of the parameters of the incoming request.
    */
-  asOrganization: string,
-  botManagement?: IncomingRequestCfPropertiesBotManagement,
-  city?: string,
-  clientTcpRtt: number,
-  clientTrustScore?: number,
+  params: RequestParams
   /**
-   * The three-letter airport code of the data center that the request
-   * hit. (e.g. "DFW")
+   * Parsed object of the headers of the incoming request.
    */
-  colo: string,
-  continent?: string,
+  headers: { [key: string]: any }
   /**
-   * The two-letter country code in the request. This is the same value
-   * as that provided in the CF-IPCountry header. (e.g. "US")
+   * Parsed object of the cookies of the incoming request.
    */
-  country: string,
-  httpProtocol: string,
-  latitude?: string,
-  longitude?: string,
+  cookies: { [key: string]: any }
   /**
-   * DMA metro code from which the request was issued, e.g. "635"
+   * Parsed object of the body of the incoming request.
    */
-  metroCode?: string,
-  postalCode?: string,
-  /**
-   * e.g. "Texas"
-   */
-  region?: string,
-  /**
-   * e.g. "TX"
-   */
-  regionCode?: string,
-  /**
-   * e.g. "weight=256,exclusive=1"
-   */
-  requestPriority: string,
-  /**
-   * e.g. "America/Chicago"
-   */
-  timezone?: string,
-  tlsVersion: string,
-  tlsCipher: string,
-  tlsClientAuth: IncomingRequestCfPropertiesTLSClientAuth
-}
-
-interface IncomingRequestCfPropertiesBotManagement {
-  score: number,
-  staticResource: boolean,
-  verifiedBot: boolean
-}
-
-interface IncomingRequestCfPropertiesTLSClientAuth {
-  certIssuerDNLegacy: string,
-  certIssuerDN: string,
-  certPresented: '0' | '1',
-  certSubjectDNLegacy: string,
-  certSubjectDN: string,
-  /**
-   * In format "Dec 22 19:39:00 2018 GMT"
-   */
-  certNotBefore: string,
-  /**
-   * In format "Dec 22 19:39:00 2018 GMT"
-   */
-  certNotAfter: string,
-  certSerial: string,
-  certFingerprintSHA1: string,
-  /**
-   * "SUCCESS", "FAILED:reason", "NONE"
-   */
-  certVerified: string
-}
-
-export interface DarkflareRequest<Environment = { [key: string]: any }, > extends IncomingRequestCfProperties {
-  query: { [key: string]: any },
-  params: { [key: string]: any },
-  headers: { [key: string]: any },
-  cookies: { [key: string]: any },
-  body: { [key: string]: any },
-  env?: Environment,
+  body: { [key: string]: any }
+  env?: RequestEnv
   ctx?: {
-    waitUntil(promise: Promise<any>): void,
+    waitUntil(promise: Promise<any>): void
     passThroughOnException(): void
-  },
-  raw: Request,
-  [key: string]: any
+  }
+  /**
+   * Unmodified `Request` object of the incoming request.
+   */
+  raw: Request
+  /**
+   * ASN of the incoming request, e.g. `395747`.
+   */
+  asn: number
+  /**
+   * The organization which owns the ASN of the incoming request, e.g. `Google Cloud`.
+   */
+  asOrganization: string
+  /**
+   * Only available when using **Cloudflare Bot Management**!
+   * 
+   * Object with the following properties: `score`, `verifiedBot`, `staticResource`, and `ja3Hash`.
+   * 
+   * Refer to [Bot Management Variables](https://developers.cloudflare.com/bots/reference/bot-management-variables) to learn more.
+   */
+  botManagement?: {
+    score: number
+    staticResource: boolean
+    verifiedBot: boolean
+  }
+  /**
+   * City of the incoming request, e.g. `Austin`.
+   */
+  city?: string
+  /**
+   * The three-letter [IATA](https://en.wikipedia.org/wiki/IATA_airport_code) airport code of the data center that the request hit, e.g. `DFW`.
+   */
+  colo: string
+  /**
+   * Continent of the incoming request, e.g. `NA`.
+   */
+  continent?: string
+  /**
+   * The two-letter country code of the incoming request, e.g. `US`.
+   */
+  country: string
+  /**
+   * HTTP Protocol of the incoming request, e.g. `HTTP/2`.
+   */
+  httpProtocol: string
+  /**
+   * Latitude of the incoming request, e.g. `30.27130`.
+   */
+  latitude?: string
+  /**
+   * Longitude of the incoming request, e.g. `-97.74260`.
+   */
+  longitude?: string
+   /**
+    * DMA metro code from which the request was issued, e.g. `635`.
+    */
+  metroCode?: string
+  /**
+   * Postal code of the incoming request, e.g. `78701`.
+   */
+  postalCode?: string
+  /**
+   * Region of the incoming request, e.g. `Texas`.
+   */
+  region?: string
+  /**
+   * Region code of the incoming request, e.g. `TX`.
+   */
+  regionCode?: string
+  /**
+   * The browser-requested prioritization information in the request object, e.g. `weight=192;exclusive=0;group=3;group-weight=127`.
+   */
+  requestPriority: string
+  /**
+   * Timezone of the incoming request, e.g. `America/Chicago`.
+   */
+  timezone?: string
+  /**
+   * The TLS version of the connection to Cloudflare, e.g. `TLSv1.3`.
+   */
+  tlsVersion: string
+  /**
+   * The cipher for the connection to Cloudflare, e.g. `AEAD-AES128-GCM-SHA256`.
+   */
+  tlsCipher: string
+  /**
+   * Only available when using **Cloudflare Access**!
+   */
+  tlsClientAuth: {
+    certIssuerDNLegacy: string
+    certIssuerDN: string
+    certPresented: '0' | '1'
+    certSubjectDNLegacy: string
+    certSubjectDN: string
+    /**
+     * In format "Dec 22 19:39:00 2018 GMT"
+     */
+    certNotBefore: string
+    /**
+     * In format "Dec 22 19:39:00 2018 GMT"
+     */
+    certNotAfter: string
+    certSerial: string
+    certFingerprintSHA1: string
+    /**
+     * `SUCCESS`, `FAILED:reason`, or `NONE`.
+     */
+    certVerified: string
+  }
 }
