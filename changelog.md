@@ -5,6 +5,25 @@
 - [**v2**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v2.md)
 - [**v1**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v1.md)
 
+## v3.0.4
+
+### Changes:
+
+- **Made the types more flexible and added comments for better understanding.**
+
+  We're no longer importing any types from `@cloudflare/workers-types`.
+  
+  You can now extend the `DarkflareRequest` type:
+  ```typescript
+  type CustomRequest = DarkflareRequest<Params, Env>
+  ```
+  
+  You can now extend the `Handler` type:
+  
+  ```typescript
+  type CustomHandler = Handler<Request, Response>
+  ```
+
 ## v3.0.3
 
 ### Bug Fixes:
