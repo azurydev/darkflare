@@ -1,9 +1,6 @@
 import { Handler } from '../../../types'
 
 export const Get: Handler = async () => {
-  // test web crypto api (test if browser features work)
-  crypto.randomUUID()
-
   return 'Hello World'
 }
 
