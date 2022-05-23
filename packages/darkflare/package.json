@@ -42,7 +42,6 @@
     "esbuild": "^0.14.39"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.11.0",
     "@goodies/get-files": "^1.0.4",
     "@goodies/get-readable-size": "^1.0.3",
     "@tsndr/cloudflare-worker-jwt": "^1.1.7",

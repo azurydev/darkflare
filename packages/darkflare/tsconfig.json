@@ -3,7 +3,6 @@
   "compilerOptions": {
     "module": "commonjs",
     "types": [
-      "@cloudflare/workers-types",
       "fs-extra",
       "jest",
       "node",
