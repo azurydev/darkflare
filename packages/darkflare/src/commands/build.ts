@@ -51,6 +51,7 @@ export default async (directory: string, { dev, testing }: {
 
       console.clear()
       console.log(chalk.yellow('wait') + chalk.blackBright(` - generating routes... (${count})`))
+      count++
 
       const r = await createRoute(f, middlewares, config, testing === 1 ? false : config.modules)
       if (!r) continue
