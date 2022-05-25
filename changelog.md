@@ -5,6 +5,31 @@
 - [**v2**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v2.md)
 - [**v1**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v1.md)
 
+## v3.0.6
+
+### Bug Fixes:
+
+- **Fixed build log.**
+  
+  Added lacking increase of the counter to display the correct amount of processed routes.
+
+### Other Changes:
+
+- **Patched dependencies.**
+
+  - patched `ts-jest`
+  - patched `typescript`
+  - patched `turbo`
+
+## v3.0.5
+
+### Changes:
+
+- **Patched dependencies and removed unused ones.**
+
+  - patched `turbo`
+  - removed `@cloudflare/workers-types`
+
 ## v3.0.4
 
 ### Changes:
