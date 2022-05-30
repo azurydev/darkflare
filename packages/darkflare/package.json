@@ -39,7 +39,7 @@
   },
   "homepage": "https://github.com/azurydev/darkflare#readme",
   "dependencies": {
-    "esbuild": "^0.14.39"
+    "esbuild": "^0.14.42"
   },
   "devDependencies": {
     "@goodies/get-files": "^1.0.4",
