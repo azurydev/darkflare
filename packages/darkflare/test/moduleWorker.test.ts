@@ -5,7 +5,7 @@ import { join } from 'path'
 let mf: Miniflare
 
 test('build process', async () => {
-  await build(__dirname, { dev: false, testing: 1 })
+  await build(__dirname, { dev: false, testing: true })
 
   mf = new Miniflare({
     scriptPath: join(__dirname, './dist/worker.js'),
@@ -117,7 +117,7 @@ test('error handling', async () => {
 
 test('middlewares', async () => {
   const response1 = await mf.dispatchFetch('http://localhost:8787/testMiddleware')
-  expect(await response1.text()).toBe('something awesome')
+  expect(await response1.text()).toBe('something more awesome')
 
   const response2 = await mf.dispatchFetch('http://localhost:8787/nested/testMiddleware')
   expect(await response2.text()).toBe('something cool')
