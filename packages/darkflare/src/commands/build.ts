@@ -11,7 +11,7 @@ import getReadableSize from '@goodies/get-readable-size'
 
 export default async (directory: string, { dev, testing }: {
   dev: boolean,
-  testing: number
+  testing: boolean
 }) => {
   try {
     console.clear()
@@ -38,9 +38,14 @@ export default async (directory: string, { dev, testing }: {
     console.log(chalk.yellow('wait') + chalk.blackBright(' - generating middlewares...'))
   
     // loop through files
-    for await (let f of getFiles(join(directory, './src/routes')))
-      if (f.endsWith('_middleware.ts'))
+    let usesOldMiddlewares = false
+
+    for await (let f of getFiles(join(directory, './src/routes'))) {
+      if (f.endsWith('_middleware.ts')) {
         middlewares.push(await getMiddleware(f))
+        usesOldMiddlewares = true
+      }
+    }
 
     let count = 0
   
@@ -53,7 +58,7 @@ export default async (directory: string, { dev, testing }: {
       console.log(chalk.yellow('wait') + chalk.blackBright(` - generating routes... (${count})`))
       count++
 
-      const r = await createRoute(f, middlewares, config, testing === 1 ? false : config.modules)
+      const r = await createRoute(f, middlewares, config, config.modules)
       if (!r) continue
   
       importsString += r.imports
@@ -68,7 +73,7 @@ export default async (directory: string, { dev, testing }: {
       importsString += `import ${m.name} from "../src/${m.importPath}"\n`
   
     // copy code
-    let codeFolder = testing > 0 ? join(__dirname, '../../code') : join(__dirname, '../code')
+    let codeFolder = testing ? join(__dirname, '../../code') : join(__dirname, '../code')
   
     await copyFile(join(codeFolder, './router.ts'), join(directory, './.darkflare/router.ts'))
     await copyFile(join(codeFolder, './handler.ts'), join(directory, './.darkflare/handler.ts'))
@@ -79,9 +84,7 @@ export default async (directory: string, { dev, testing }: {
     await writeFile(join(directory, './.darkflare/handler.ts'), `const ORIGIN = ${JSON.stringify(config.origin)}\nconst LOGGING = ${dev}\n${handlerContent}`)
   
     // create main file
-    const fetchHandler = testing === 2 ? `addEventListener('fetch', event =>
-    event.respondWith(router.handle(event.request))
-    )` : config.modules ? `export default {
+    const fetchHandler = config.modules ? `export default {
       fetch: router.handle
     }` : `addEventListener('fetch', event =>
       event.respondWith(router.handle(event.request))
@@ -101,7 +104,7 @@ export default async (directory: string, { dev, testing }: {
       bundle: true,
       minify: (!config.minify || dev) ? false : true,
       legalComments: 'none',
-      format: (testing === 2 || !config.modules) ? 'cjs' : 'esm',
+      format: (!config.modules) ? 'cjs' : 'esm',
       outfile: join(directory, './dist/worker.js')
     })
   
@@ -109,6 +112,8 @@ export default async (directory: string, { dev, testing }: {
     const { size } = await stat(join(directory, './dist/worker.js'))
 
     console.clear()
+    if (usesOldMiddlewares) console.log(chalk.redBright('warning') + chalk.blackBright(' - _middleware.ts files have been deprecated, please consider migrating to our new middlewares!'))
+    if (!config.modules) console.log(chalk.redBright('warning') + chalk.blackBright(' - building for a service worker has been deprecated, please consider using Cloudflare Module Worker format!'))
     console.log(chalk.greenBright('ready') + chalk.blackBright(' - successfully generated a production-ready worker script.'))
     console.log(chalk.blueBright('info') + chalk.blackBright(` - generated your app within ${chalk.bold(`${Date.now() - time} ms`)}.`))
     console.log(chalk.blueBright('info') + chalk.blackBright(` - your worker script has a size of ${chalk.bold(await getReadableSize(size))}.`))
