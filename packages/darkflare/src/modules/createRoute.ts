@@ -54,66 +54,71 @@ export default async (absolutePath: string, middlewares: MiddlewareObject[], con
   // determine if route needs a middleware
   const closestMiddleware = middlewares.length > 0 ? await getClosestMiddleware(importPath, middlewares) : undefined
 
+  // get middleware string
+  let middlewareString = closestMiddleware ? `, ${closestMiddleware.name}` : ''
+
+  if (exportedModules.includes('beforeAll')) middlewareString = `, ${name}_beforeAll`
+
   // add endpoints to routes string
   if (modules) {
     if (exportedModules.includes('Get')) {
       methods += 'Get, '
-      routesString += `.get('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Get, env, context${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.get('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Get, env, context${middlewareString}))`
     }
   
     if (exportedModules.includes('Post')) {
       methods += 'Post, '
-      routesString += `.post('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Post, env, context${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.post('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Post, env, context${middlewareString}))`
     }
   
     if (exportedModules.includes('Patch')) {
       methods += 'Patch, '
-      routesString += `.patch('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Patch, env, context${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.patch('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Patch, env, context${middlewareString}))`
     }
   
     if (exportedModules.includes('Put')) {
       methods += 'Put, '
-      routesString += `.put('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Put, env, context${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.put('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Put, env, context${middlewareString}))`
     }
   
     if (exportedModules.includes('Delete')) {
       methods += 'Delete, '
-      routesString += `.delete('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Delete, env, context${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.delete('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Delete, env, context${middlewareString}))`
     }
   
     if (exportedModules.includes('Head')) {
       methods += 'Head, '
-      routesString += `.head('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Head, env, context${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.head('${endpoint}', async (request: IttyRequest, env: any, context: any) => await handler(request, ${name}_Head, env, context${middlewareString}))`
     }
   } else {
     if (exportedModules.includes('Get')) {
       methods += 'Get, '
-      routesString += `.get('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Get, null, null${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.get('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Get, null, null${middlewareString}))`
     }
   
     if (exportedModules.includes('Post')) {
       methods += 'Post, '
-      routesString += `.post('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Post, null, null${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.post('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Post, null, null${middlewareString}))`
     }
   
     if (exportedModules.includes('Patch')) {
       methods += 'Patch, '
-      routesString += `.patch('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Patch, null, null${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.patch('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Patch, null, null${middlewareString}))`
     }
   
     if (exportedModules.includes('Put')) {
       methods += 'Put, '
-      routesString += `.put('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Put, null, null${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.put('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Put, null, null${middlewareString}))`
     }
   
     if (exportedModules.includes('Delete')) {
       methods += 'Delete, '
-      routesString += `.delete('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Delete, null, null${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.delete('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Delete, null, null${middlewareString}))`
     }
   
     if (exportedModules.includes('Head')) {
       methods += 'Head, '
-      routesString += `.head('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Head, null, null${closestMiddleware ? `, ${closestMiddleware.name}` : ''}))`
+      routesString += `.head('${endpoint}', async (request: IttyRequest) => await handler(request, ${name}_Head, null, null${middlewareString}))`
     }
   }
 
@@ -127,7 +132,8 @@ export default async (absolutePath: string, middlewares: MiddlewareObject[], con
     .replace('Head', `Head as ${name}_Head`)
 
   // added route to imports string
-  importsString += `import { ${methods} } from "../src/${importPath.replace('/index', '')}"\n`
+  if (exportedModules.includes('beforeAll')) importsString += `import { beforeAll as ${name}_beforeAll, ${methods} } from "../src/${importPath.replace('/index', '')}"\n`
+  else importsString += `import { ${methods} } from "../src/${importPath.replace('/index', '')}"\n`
 
   // add endpoint for preflight request
   if (config.handlePreflightRequests) routesString += `.options('${endpoint}', cors('${methods.toUpperCase()}'))`
