@@ -5,6 +5,44 @@
 - [**v2**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v2.md)
 - [**v1**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v1.md)
 
+## v3.1.0
+
+### New Features:
+
+- **Write middlewares the safer way.**
+
+  You should now declare a middleware right from within your route file. The old method of creating a separate `_middleware.ts` file will be marked as deprecated for now and gets removed with the release of **darkflare v4**.
+
+  ```typescript
+  import type { Handler } from 'darkflare'
+
+  const beforeAll: Handler = async req => {
+    req.whatever = 'Hello World'
+  }
+
+  const Get: Handler = async req => {
+    // respond with Hello World
+    return req.whatever
+  }
+
+  export {
+    beforeAll,
+    Get
+  }
+  ```
+
+### Changes:
+
+- **Deprecated Service Worker format.**
+
+  Disabling `modules` in your darkflare config file will now give out a warning on console. We'll completely remove support for the Service Worker format in **darkflare v4**.
+
+- **Patched dependencies.**
+
+  - bumped `miniflare` to **v2.5.0** *(dev-only)*
+  - bumped `@types/node` to **v17.0.38** in #28 *(dev-only)*
+  - bumped `esbuild` to **v0.14.42** in #26 
+
 ## v3.0.6
 
 ### Bug Fixes:
