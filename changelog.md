@@ -40,8 +40,8 @@
 - **Patched dependencies.**
 
   - bumped `miniflare` to **v2.5.0** *(dev-only)*
-  - bumped `@types/node` to **v17.0.38** in #28 *(dev-only)*
-  - bumped `esbuild` to **v0.14.42** in #26 
+  - bumped `@types/node` to **v17.0.38** *(dev-only)*
+  - bumped `esbuild` to **v0.14.42**
 
 ## v3.0.6
 
