@@ -1,6 +1,6 @@
 {
   "name": "darkflare",
-  "version": "3.0.6",
+  "version": "3.1.0",
   "description": "The Cloudflare Framework",
   "types": "./types/index.d.ts",
   "bin": {
@@ -9,9 +9,7 @@
   "scripts": {
     "build": "esbuild src/index.ts --external:esbuild --bundle --minify --format=cjs --platform=node --target=node16 --legal-comments=none --outfile=dist/index.js",
     "build:watch": "esbuild src/index.ts --watch --external:esbuild --bundle --minify --format=cjs --platform=node --target=node16 --legal-comments=none --outfile=dist/index.js",
-    "test:module": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js -- -i test/moduleWorker.test.ts",
-    "test:service": "jest -i test/serviceWorker.test.ts",
-    "test": "npm run test:module && npm run test:service",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
     "publish:canary": "npm version prerelease --preid=canary && npm publish --tag canary",
     "publish:patch": "npm version patch && npm publish",
     "publish:minor": "npm version minor && npm publish",
