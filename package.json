@@ -13,7 +13,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "turbo": "^1.2.14"
+    "turbo": "^1.2.15"
   },
   "engines": {
     "node": ">=16",
