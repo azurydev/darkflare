@@ -42,7 +42,7 @@
   "devDependencies": {
     "@goodies/get-files": "^1.0.4",
     "@goodies/get-readable-size": "^1.0.3",
-    "@tsndr/cloudflare-worker-jwt": "^1.1.7",
+    "@tsndr/cloudflare-worker-jwt": "^1.2.0",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^28.1.0",
     "@types/node": "^17.0.38",
