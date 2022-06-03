@@ -5,6 +5,17 @@
 - [**v2**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v2.md)
 - [**v1**](https://github.com/azurydev/darkflare/blob/canary/changelogs/v1.md)
 
+## v3.1.1
+
+### Changes:
+
+- **Patched dependencies.**
+
+  - bumped `@types/jest` to **v28.1.0**
+  - bumped `@tsndr/cloudflare-worker-jwt` to **v1.2.0**
+  - bumped `ts-jest` to **v28.0.4**
+  - bumped `turbo` to **v1.2.16**
+
 ## v3.1.0
 
 ### New Features:
