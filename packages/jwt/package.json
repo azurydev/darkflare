@@ -37,7 +37,7 @@
   "homepage": "https://github.com/azurydev/darkflare#readme",
   "devDependencies": {
     "@tsndr/cloudflare-worker-jwt": "^1.2.0",
-    "@types/jest": "^28.1.0"
+    "@types/jest": "^28.1.1"
   },
   "engines": {
     "node": ">=16",
