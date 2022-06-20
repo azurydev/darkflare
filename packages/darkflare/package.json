@@ -54,7 +54,7 @@
     "miniflare": "^2.5.0",
     "nanoid": "^3.3.4",
     "ts-jest": "^28.0.4",
-    "typescript": "^4.7.2",
+    "typescript": "^4.7.4",
     "yargs": "^17.5.0"
   },
   "engines": {
