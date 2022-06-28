@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "module": "es2022",
     "lib": ["esnext"],
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -13,6 +14,12 @@
     "removeComments": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "newLine": "crlf"
+    "newLine": "crlf",
+    "types": [
+      "fs-extra",
+      "jest",
+      "node",
+      "yargs"
+    ]
   }
 }
