@@ -1,22 +1,83 @@
 {
-  "name": "@darkflare/wrapper",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "test": "turbo run test",
-    "publish:canary": "turbo run publish:canary",
-    "publish:patch": "turbo run publish:patch",
-    "publish:minor": "turbo run publish:minor",
-    "publish:major": "turbo run publish:major"
+  "name": "darkflare",
+  "version": "4.0.0-canary.0",
+  "description": "The Cloudflare Framework",
+  "types": "types/index.d.ts",
+  "bin": {
+    "darkflare": "./dist/cli.js"
   },
-  "workspaces": [
-    "packages/*"
+  "files": [
+    "dist"
   ],
+  "scripts": {
+    "build": "esbuild src/index.ts --external:esbuild --bundle --minify --format=cjs --platform=node --target=node16 --legal-comments=none --outfile=dist/index.js",
+    "build:watch": "esbuild src/index.ts --watch --external:esbuild --bundle --minify --format=cjs --platform=node --target=node16 --legal-comments=none --outfile=dist/index.js",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
+    "version:canary": "npm version prerelease --preid=canary",
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./crypto": "./dist/crypto.js",
+    "./email": "./dist/email.js",
+    "./jwt": "./dist/jwt.js"
+  },
+  "typesVersions": {
+    "*": {
+      "crypto": [
+        "./types/crypto.d.ts"
+      ],
+      "email": [
+        "./types/email.d.ts"
+      ],
+      "jwt": [
+        "./types/jwt.d.ts"
+      ]
+    }
+  },
+  "author": "Samuel Kopp <opensource@azury.dev> (https://azury.dev)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azurydev/darkflare.git"
+  },
+  "keywords": [
+    "api",
+    "workers",
+    "cloudflare",
+    "framework",
+    "darkflare"
+  ],
+  "bugs": {
+    "url": "https://github.com/azurydev/darkflare/issues"
+  },
+  "homepage": "https://github.com/azurydev/darkflare#readme",
+  "dependencies": {
+    "esbuild": "^0.14.47"
+  },
   "devDependencies": {
-    "turbo": "^1.2.16"
+    "@sinclair/typebox": "^0.23.5",
+    "@types/fs-extra": "^9.0.13",
+    "@types/jest": "^28.1.3",
+    "@types/ms": "^0.7.31",
+    "@types/node": "^18.0.0",
+    "@types/yargs": "^17.0.10",
+    "boxen": "^7.0.0",
+    "chalk": "^5.0.1",
+    "closest-match": "^1.3.3",
+    "fs-extra": "^10.1.0",
+    "miniflare": "^2.5.1",
+    "ms": "^2.1.3",
+    "nanoid": "^4.0.0",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4",
+    "yargs": "^17.5.1"
   },
   "engines": {
-    "node": ">=16",
+    "node": ">=18",
     "npm": ">=8"
-  }
+  },
+  "type": "module"
 }
