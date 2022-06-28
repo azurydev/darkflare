@@ -1,0 +1,6 @@
+*
+!dist/**/*
+!changelog.md
+!code_of_conduct.md
+!readme.md
+!license
