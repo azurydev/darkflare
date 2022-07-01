@@ -55,7 +55,7 @@
   },
   "homepage": "https://github.com/azurydev/darkflare#readme",
   "dependencies": {
-    "esbuild": "^0.14.47"
+    "esbuild": "^0.14.48"
   },
   "devDependencies": {
     "@sinclair/typebox": "^0.23.5",
