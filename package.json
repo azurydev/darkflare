@@ -1,7 +1,7 @@
 {
   "name": "darkflare",
   "version": "4.0.0-canary.0",
-  "description": "The Cloudflare Framework",
+  "description": "The API Engine",
   "types": "types/index.d.ts",
   "bin": {
     "darkflare": "./dist/cli.js"
@@ -58,7 +58,7 @@
     "esbuild": "^0.14.48"
   },
   "devDependencies": {
-    "@sinclair/typebox": "^0.24.2",
+    "@sinclair/typebox": "^0.24.5",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^28.1.4",
     "@types/ms": "^0.7.31",
