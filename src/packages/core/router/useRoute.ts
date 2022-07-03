@@ -1,5 +1,5 @@
-import respondWith from './respondWith'
-import validate from './validate'
+import { respondWith } from './respondWith'
+import { validate } from './validate'
 import type { CloudflareRequest } from '../../../types/CloudflareRequest'
 import type { DarkflareRequest } from '../../../types/DarkflareRequest'
 import type { DarkflareResponse } from '../../../types/DarkflareResponse'
