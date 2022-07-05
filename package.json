@@ -70,7 +70,7 @@
     "@types/jest": "^28.1.4",
     "@types/ms": "^0.7.31",
     "@types/node": "^18.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.30.4",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
     "boxen": "^7.0.0",
     "chalk": "^5.0.1",
