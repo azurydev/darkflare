@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - canary
+
+jobs:
+  release:
+    if: ${{ github.repository_owner == 'azurydev' }}
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: npm
+
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true' || runner.os == 'Windows'
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Create Pull Request or Publish Package
+        uses: changesets/action@v1
+        with:
+          version: npx changeset version
+          publish: npx changeset publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

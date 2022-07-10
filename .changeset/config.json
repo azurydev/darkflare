@@ -1,0 +1,13 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/@changesets/config@2/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    {
+      "repo": "azurydev/darkflare"
+    }
+  ],
+  "commit": false,
+  "access": "public",
+  "updateInternalDependencies": "patch",
+  "baseBranch": "canary"
+}

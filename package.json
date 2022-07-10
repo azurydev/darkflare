@@ -65,6 +65,8 @@
     "esbuild": "^0.14.48"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.4.5",
+    "@changesets/cli": "^2.23.1",
     "@sinclair/typebox": "^0.24.11",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^28.1.4",
