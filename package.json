@@ -1,6 +1,6 @@
 {
   "name": "darkflare",
-  "version": "4.0.0-canary.0",
+  "version": "3.1.1",
   "description": "The API Engine",
   "types": "types/index.d.ts",
   "bin": {
@@ -15,11 +15,7 @@
     "build:watch": "esbuild src/index.ts --watch --external:esbuild --bundle --minify --format=cjs --platform=node --target=node16 --legal-comments=none --outfile=dist/index.js",
     "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
     "lint": "eslint src --ext .ts",
-    "format": "eslint src --fix",
-    "version:canary": "npm version prerelease --preid=canary",
-    "version:patch": "npm version patch",
-    "version:minor": "npm version minor",
-    "version:major": "npm version major"
+    "format": "eslint src --fix"
   },
   "exports": {
     ".": "./dist/index.js",
