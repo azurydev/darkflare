@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - canary
+      - dev
 
 jobs:
   release:
@@ -44,6 +44,8 @@ jobs:
         with:
           version: npx changeset version
           publish: npx changeset publish
+          commit: 'ci: version packages'
+          title: 'ci: version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
