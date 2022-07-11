@@ -16,3 +16,5 @@ What you can expect from v4:
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0)
 - [changesets](https://github.com/changesets/changesets) for changelog/publishing
 - **beat itty-router, worktop, hono, and others in performance!**
+
+Release Date: **Mid August 2022**
