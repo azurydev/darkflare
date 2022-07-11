@@ -9,5 +9,5 @@
   "commit": false,
   "access": "public",
   "updateInternalDependencies": "patch",
-  "baseBranch": "canary"
+  "baseBranch": "dev"
 }
