@@ -58,7 +58,7 @@
   },
   "homepage": "https://github.com/azurydev/darkflare#readme",
   "dependencies": {
-    "esbuild": "^0.14.48"
+    "esbuild": "^0.14.49"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.5",
