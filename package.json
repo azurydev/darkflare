@@ -65,7 +65,7 @@
     "@changesets/cli": "^2.23.2",
     "@sinclair/typebox": "^0.24.18",
     "@types/fs-extra": "^9.0.13",
-    "@types/jest": "^28.1.4",
+    "@types/jest": "^28.1.5",
     "@types/ms": "^0.7.31",
     "@types/node": "^18.0.3",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
