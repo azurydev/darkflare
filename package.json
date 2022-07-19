@@ -68,7 +68,7 @@
     "@types/jest": "^28.1.6",
     "@types/ms": "^0.7.31",
     "@types/node": "^18.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.6",
     "boxen": "^7.0.0",
     "chalk": "^5.0.1",
