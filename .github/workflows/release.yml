@@ -7,7 +7,7 @@ on:
 
 jobs:
   release:
-    if: ${{ github.repository_owner == 'azurydev' }}
+    if: ${{ github.repository_owner == 'darkflarengine' }}
     name: Release
     runs-on: ubuntu-latest
     steps:
