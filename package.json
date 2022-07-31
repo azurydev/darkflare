@@ -58,6 +58,7 @@
   },
   "homepage": "https://github.com/azurydev/darkflare#readme",
   "dependencies": {
+    "@darkflare/parser": "^0.1.2",
     "esbuild": "^0.14.51"
   },
   "devDependencies": {
