@@ -59,6 +59,7 @@
   "homepage": "https://github.com/azurydev/darkflare#readme",
   "dependencies": {
     "@darkflare/parser": "^0.1.2",
+    "@darkflare/wjson": "^0.4.3",
     "esbuild": "^0.14.51"
   },
   "devDependencies": {
