@@ -60,7 +60,7 @@
   "dependencies": {
     "@darkflare/parser": "^0.1.2",
     "@darkflare/wjson": "^0.4.3",
-    "esbuild": "^0.14.51"
+    "esbuild": "^0.14.53"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.6",
